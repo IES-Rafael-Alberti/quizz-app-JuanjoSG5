@@ -36,6 +36,8 @@ function displayQuestions($mysqli) {
             <label><input type="radio" name="question_<?= $row["question_id"]?>"> <?= $row["option_a"] ?>  </input></label>
             <label><input type="radio" name="question_<?= $row["question_id"]?>"> <?= $row["option_b"] ?>  </input></label>
             <label><input type="radio" name="question_<?= $row["question_id"]?>"> <?= $row["option_c"] ?>  </input></label>
+            <label><input type="radio" name="question_<?= $row["question_id"]?>"> <?= $row["option_d"] ?>  </input></label>
+        
         </article>
         <?php
     }
