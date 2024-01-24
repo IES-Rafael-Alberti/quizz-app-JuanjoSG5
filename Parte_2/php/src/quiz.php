@@ -16,7 +16,8 @@ $formHandler->handleSubmission();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Quiz</title>
-    <link rel="stylesheet" href="./../../php/CSS/quiz.css">
+    <link rel="stylesheet" href="CSS/quiz.css">
+
     <script>
         function reload() {
             window.location.href = window.location.href.split('?')[0];
@@ -43,11 +44,9 @@ $formHandler->handleSubmission();
         }
 
         function submitForm() {
-            // Add logic to submit the form or take any other action when the time is up
             document.getElementById('quizForm').submit();
         }
 
-        // Start the timer when the page loads
         window.onload = function() {
             startTimer();
         };
