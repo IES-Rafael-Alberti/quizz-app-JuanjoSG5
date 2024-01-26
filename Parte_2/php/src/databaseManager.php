@@ -1,21 +1,42 @@
 <?php
-$servername = getenv("DB_HOST");
-$username = getenv("DB_USER");
-$password = getenv("DB_PASSWORD");
-$database = getenv("DB_DATABASE");
+function getDbConnection() {
+$host = 'db'; 
+$username = 'user';
+$password = 'user'; 
+$database = 'quizz-app';
 
-$conn = new mysqli($servername, $username, $password, $database);
+try {
+$mysqli = new mysqli($host, $username, $password, $database);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysqli->connect_error) {
+    error_log('Connection failed: ' . $mysqli->connect_error);
+
+    throw new mysqli_sql_exception('Connection failed: ' . $mysqli->connect_error);
 }
 
-$sqlScript = file_get_contents('sql_tables.sql');
+return $mysqli;
 
-if ($conn->multi_query($sqlScript)) {
-    echo "Tables created successfully";
-} else {
-    echo "Error creating tables: " . $conn->error;
+} catch (mysqli_sql_exception $e) {
+error_log('Error: ' . $e->getMessage());
+die('Error: ' . $e->getMessage());
+}
 }
 
-$conn->close();
+
+
+function displayQuestions($mysqli) {
+    global $mysqli;
+    $sql = "SELECT * FROM Questions;";
+    $result = mysqli_query($mysqli, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+         <article class="question">
+            <p> <?= $row['question_id'], ". ", $row['question_text']?> </p>
+            <label><input type="radio" name="q<?= $row["question_id"]?>" value="a"> <?= $row["option_a"] ?>  </label>
+            <label><input type="radio" name="q<?= $row["question_id"]?>" value="b"> <?= $row["option_b"] ?>  </label>
+            <label><input type="radio" name="q<?= $row["question_id"]?>" value="c"> <?= $row["option_c"] ?>  </label>
+            <label><input type="radio" name="q<?= $row["question_id"]?>" value="d"> <?= $row["option_d"] ?>  </label>
+        </article>
+        <?php
+    }
+}
