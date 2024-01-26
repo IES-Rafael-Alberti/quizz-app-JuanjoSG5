@@ -13,6 +13,7 @@ CREATE TABLE Quiz (
     created_at DATETIME
 );
 
+
 CREATE TABLE Questions (
     question_id INT PRIMARY KEY AUTO_INCREMENT,
     quiz_id INT,
@@ -24,4 +25,3 @@ CREATE TABLE Questions (
     correct_option CHAR(1) NOT NULL,
     FOREIGN KEY (quiz_id) REFERENCES Quiz(quiz_id)
 );
-
