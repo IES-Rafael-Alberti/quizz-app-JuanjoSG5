@@ -10,49 +10,41 @@ SET @quiz_id = LAST_INSERT_ID();
 -- Question 1
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, 'What does PHP stand for?', 'Personal Home Page', 'PHP: Hypertext Preprocessor', 'PHP Hyper Markup Language', 'None of the above', 'B');
+(@quiz_id, 'What does PHP stand for?', 'Personal Home Page', 'PHP: Hypertext Preprocessor', 'PHP Hyper Markup Language', 'None of the above', 'b');
 
 -- Question 2
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
 (@quiz_id, 'What is the result of 2 + 2 in PHP?', '3', '4', '5', '6', 'b');
 
--- Question 3
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Cuál es el resultado de `echo "Hola" . " " . "Mundo";`?', 'HelloWorld', 'Hola Mundo', 'HelloWorld', '"Hola Mundo"', 'b');
+(@quiz_id, 'What is the result of `echo "Hello" . " " . "World";`?', 'HelloWorld', 'Hello World', 'HelloWorld', '"Hello World"', 'b');
 
--- Question 4
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, 'En PHP, ¿qué bucle se utiliza para ejecutar un bloque de código un número especificado de veces?', 'Bucle for', 'Bucle while', 'Bucle do...while', 'Bucle foreach', 'a');
+(@quiz_id, 'In PHP, which loop is used to execute a block of code a specified number of times?', 'For loop', 'While loop', 'Do...while loop', 'Foreach loop', 'a');
 
--- Question 5
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Qué función de PHP se utiliza para abrir un archivo para escritura?', 'fopen', 'file_open', 'open_file', 'Ninguna de las anteriores', 'a');
+(@quiz_id, 'Which PHP function is used to open a file for writing?', 'fopen', 'file_open', 'open_file', 'None of the above', 'a');
 
--- Question 6
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Cuál es el propósito de la superglobal `$_GET` en PHP?', 'Recuperar datos de un formulario con el método POST', 'Almacenar variables de sesión', 'Recuperar datos de la cadena de consulta URL', 'Definir constantes globales', 'c');
+(@quiz_id, 'What is the purpose of the `$_GET` superglobal in PHP?', 'Retrieve data from a form with the POST method', 'Store session variables', 'Retrieve data from the URL query string', 'Define global constants', 'c');
 
--- Question 7
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Cuál de los siguientes es un ejemplo de constante mágica de PHP?', '$this', '__LINE__', '$var', 'functionName()', 'b');
+(@quiz_id, 'Which of the following is an example of a PHP magic constant?', '$this', '__LINE__', '$var', 'functionName()', 'b');
 
--- Question 8
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Qué hace la función `include` en PHP?', 'Ejecuta un bloque de código solo si una condición es verdadera', 'Incluye y evalúa un archivo especificado', 'Define una nueva función', 'Genera un número aleatorio', 'b');
+(@quiz_id, 'What does the `include` function do in PHP?', 'Executes a block of code only if a condition is true', 'Includes and evaluates a specified file', 'Defines a new function', 'Generates a random number', 'b');
 
--- Question 9
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿En PHP, qué comprueba el operador `===`?', 'Igualdad', 'Asignación', 'Desigualdad', 'Comparación', 'a');
+(@quiz_id, 'In PHP, what does the `===` operator check?', 'Equality', 'Assignment', 'Inequality', 'Comparison', 'a');
 
--- Question 10
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
-(@quiz_id, '¿Cuál de los siguientes se utiliza para crear un objeto en PHP?', 'new', 'objeto', 'crear', 'instancia', 'a');
+(@quiz_id, 'Which of the following is used to create an object in PHP?', 'new', 'object', 'create', 'instance', 'a');

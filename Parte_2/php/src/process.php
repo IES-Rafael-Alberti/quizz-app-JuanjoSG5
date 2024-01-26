@@ -2,19 +2,21 @@
 
 class FormHandler
 {
-    private $correctAnswers;
+    private $quizId;
+    private $db;
 
-    public function __construct($correctAnswers)
+    public function __construct($quizId, $db)
     {
-        $this->correctAnswers = $correctAnswers;
+        $this->quizId = $quizId;
+        $this->db = $db;
     }
 
     public function handleSubmission()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userAnswers = $this->getUserAnswers();
-
-            $this->evaluateAnswers($userAnswers);
+            $questions = $this->getCorrectAnswersFromDatabase();
+            $this->evaluateAnswers($userAnswers, $questions);
         }
     }
 
@@ -22,7 +24,7 @@ class FormHandler
     {
         $userAnswers = [];
 
-        for ($i = 1; $i <= count($this->correctAnswers); $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $fieldName = "q" . $i;
             $userAnswers[$i - 1] = isset($_POST[$fieldName]) ? $_POST[$fieldName] : null;
         }
@@ -30,41 +32,44 @@ class FormHandler
         return $userAnswers;
     }
 
-    private function evaluateAnswers($userAnswers)
+
+    private function getCorrectAnswersFromDatabase()
+    {
+        $query = "SELECT question_id, correct_option FROM Questions WHERE quiz_id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $this->quizId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $questions = [];
+        while ($row = $result->fetch_assoc()) {
+            $questions[$row['question_id']] = $row['correct_option'];
+        }
+
+        return $questions;
+    }
+
+    private function evaluateAnswers($userAnswers, $correctAnswers)
     {
         $correctQuestions = [];
         $correctCount = 0;
-
-        for ($i = 0; $i < count($this->correctAnswers); $i++) {
-            if ($userAnswers[$i] == $this->correctAnswers[$i]) {
+        for ($i = 0; $i < 10; $i++) {
+            if ($userAnswers[$i] == $correctAnswers[$i + 1]) {
                 $correctQuestions[] = "q" . ($i + 1);
                 $correctCount++;
             }
         }
-
         $queryString = implode(",", $correctQuestions);
-        $answeredQueryString = http_build_query(array_map(function ($i, $answer) {
-            return "q" . ($i + 1) . "=" . urlencode($answer);
-        }, array_keys($userAnswers), $userAnswers));
-
-        $redirectUrl = "quiz.php?success=$queryString&$answeredQueryString";
+        $redirectUrl = "quiz.php?success=$queryString";
         header("Location:$redirectUrl");
         exit();
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correctAnswers = ["b", "b", "b", "a", "d", "c", "b", "b", "a", "a"];
+    $quizId = 1;
+    $db = new mysqli("db", "user", "user", "quizz-app");
 
-    $questionsAnswered = array_keys($_POST);
-    $questionsUnanswered = array_diff(array_map(function ($i) {
-        return "q" . $i;
-    }, range(1, 10)), $questionsAnswered);
-
-    if (count($questionsAnswered) !== count($correctAnswers)) {
-        header("Location:quiz.php?q=" . implode(",", $questionsUnanswered));
-    } else {
-        $formHandler = new FormHandler($correctAnswers);
-        $formHandler->handleSubmission();
-    }
+    $formHandler = new FormHandler($quizId, $db);
+    $formHandler->handleSubmission();
 }
