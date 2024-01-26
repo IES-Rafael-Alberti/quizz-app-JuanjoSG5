@@ -1,0 +1,4 @@
+docker build -t quiz-app .
+
+docker run -p 80:80 -v path-to-the-folder:/var/www/html functions
+/home/juan/Escritorio/DAW/SERVIDOR/PHP/QUIZZ-APP
