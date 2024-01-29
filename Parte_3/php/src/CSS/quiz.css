@@ -54,6 +54,7 @@ input[type="submit"]:hover {
 /* Basic button styles */
 .button {
     display: inline-block;
+    margin: 20px;
     padding: 10px 20px;
     font-size: 16px;
     text-align: center;
@@ -71,3 +72,12 @@ input[type="submit"]:hover {
     color: #fff;
     border-color: #2980b9;
 }
+
+/* create a class that occupies 33vw and that it is centered with shadow and margins*/
+.section{
+    display: flex;
+    color: red;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+

@@ -1,7 +1,6 @@
 <?php
 
-class QuestionController
-{
+class QuestionController {
     private $db;
 
     public function __construct($db)
@@ -29,8 +28,7 @@ class QuestionController
         $stmt->execute();
     }
 
-    public function deleteQuestion($questionId)
-    {
+    public function deleteQuestion($questionId){
         $query = "DELETE FROM Questions
         WHERE question_id = ?;";
         $stmt = $this->db->prepare($query);
@@ -62,3 +60,6 @@ class QuestionController
         return $question;
     }
 }
+
+
+

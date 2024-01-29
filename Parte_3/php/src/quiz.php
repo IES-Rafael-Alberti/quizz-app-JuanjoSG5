@@ -16,14 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Quiz</title>
+    
     <link rel="stylesheet" href="CSS/quiz.css">
     <script src='main.js'></script>
 </head>
 
 <body>
+    <button type="button" class="button" onclick="window.location.href='questionManagement.php'">Manage Questions</button>
     <form id="quizForm" method="post" action="<?php echo isset($_GET['success']) ? '#' : "process.php"; ?>">
+
         <?php
+        
         include 'databaseManager.php';
+        include 'DatabaseCreator.php';
         if (isset($_GET['success'])) {
             $score = count(explode(',', $_GET['success']));
             echo "<p><strong>Your score: $score / 10</strong></p>";
@@ -32,13 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "</form>";
             exit();
         } else {
+            $DbCreator = new DatabaseCreator();
+            $db = $DbCreator->getDbConnection();
             $manager = new DatabaseManager();
             echo "<h1>PHP Quiz</h1>";
             echo "<div id=\"timer\">Time remaining: 5:00</div>";
-            $mysqli = $manager->getDbConnection();
             
-            $manager->displayQuestions($mysqli);
-            $mysqli->close();
+            $manager->displayQuestions($db);
+            $db->close();
             echo "<input type=\"submit\" value=\"Submit\" >";
         }
         ?>
