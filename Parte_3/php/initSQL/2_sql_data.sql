@@ -28,6 +28,7 @@ VALUES
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
 (@quiz_id, 'Which PHP function is used to open a file for writing?', 'fopen', 'file_open', 'open_file', 'None of the above', 'a');
+
 INSERT INTO Questions (quiz_id, question_text, option_a, option_b, option_c, option_d, correct_option)
 VALUES
 (@quiz_id, 'What is the purpose of the `$_GET` superglobal in PHP?', 'Retrieve data from a form with the POST method', 'Store session variables', 'Retrieve data from the URL query string', 'Define global constants', 'c');
