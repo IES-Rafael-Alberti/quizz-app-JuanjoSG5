@@ -1,0 +1,19 @@
+
+
+docker build -t quizphp -f Dockerfile.php .
+
+docker build -t quizdb -f Dockerfile.mysql .
+
+docker run -p 80:80 -v path-to-the-folder:/var/www/html --name quizphp quizphp
+
+
+docker run -d -p 3306:3306 --name quizdb quizdb
+
+docker exec -it php-db-1 mysql -u root -p
+
+docker exec -it quizphp /bin/bash
+
+
+user
+use quizz-app;
+select * from Questions;

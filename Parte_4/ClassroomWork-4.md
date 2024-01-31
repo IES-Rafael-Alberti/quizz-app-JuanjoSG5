@@ -19,22 +19,24 @@ CREATE TABLE User (
 **Paso 2: Implementar la autenticación de usuarios**
 
 1. **Registro de usuarios (inscripción):**
+
    - Crear un formulario de registro para que los usuarios se registren.
    - Implementar código PHP para validar las entradas del usuario, encriptar contraseñas e insertar datos del usuario en la tabla "Usuario".
-
 2. **Inicio de sesión de usuario:**
+
    - Desarrollar un formulario de inicio de sesión para que los usuarios introduzcan sus credenciales.
    - Implementar código PHP para autenticar a los usuarios comparando su contraseña encriptada con la almacenada en la tabla "Usuario".
-
 3. **Cierre de sesión de usuario:**
+
    - Crear una función de cierre de sesión para finalizar la sesión de un usuario y redirigirlo a la página de inicio de sesión.
 
 **Paso 3: Gestión de sesiones**
 
 1. **Inicio de sesión:**
-   - Utilizar `session_start()` de PHP para iniciar una sesión cuando un usuario inicia sesión.
 
+   - Utilizar `session_start()` de PHP para iniciar una sesión cuando un usuario inicia sesión.
 2. **Variables de sesión:**
+
    - Almacenar variables de sesión para realizar un seguimiento de los datos relacionados con el usuario, como ID de usuario y nombre de usuario.
 
 **Paso 4: Cookies (si es necesario)**
@@ -57,10 +59,11 @@ CREATE TABLE User (
 **Paso 7: Prueba y depuración**
 
 1. **Pruebas:**
+
    - Probar exhaustivamente la autenticación de usuarios, la gestión de sesiones y cualquier funcionalidad relacionada con cookies.
    - Asegúrese de que los usuarios puedan iniciar sesión, iniciar cuestionarios y continuarlos sin problemas.
-
 2. **Depuración:**
+
    - Identificar y corregir cualquier problema o error que surja durante las pruebas.
 
 **Paso 8: Documentación para el usuario**
